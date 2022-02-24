@@ -202,4 +202,48 @@ body {
   color: #fa4c53;
 }
 
+@media screen and (max-width: 1439px) {
+  .signup__content {
+    width: calc(60% - 4rem);
+  }
+  .signup__image {
+    width: calc(40% - 4rem);
+  }
+}
+@media screen and (max-width: 1279px) {
+  .signup__content {
+    width: 100%;
+  }
+  .signup__image {
+    display: none;
+  }
+}
+@media screen and (max-width: 1279px) {
+  body {
+    padding: 2rem;
+  }
+
+  .signup {
+    padding: 2rem;
+  }
+  .signup-social {
+    flex-direction: column;
+  }
+  .signup-social__item {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .signup-form__row {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+  .signup-form__row .signup-form__group {
+    width: 100%;
+  }
+  .signup-form__group {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
