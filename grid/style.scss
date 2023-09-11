@@ -1,0 +1,117 @@
+$blue-color: #48aafd;
+$green-color: #00c899;
+$primary: #FC556F;
+$secondary: #FD9C84;
+$gradient: linear-gradient(to right, $primary, $secondary);
+html {
+    font-size: 62.5% ;
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    font-size: 1.6rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    background-color: #f3f3f3;
+    padding: 2rem;
+}
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+// grid-template-areas định nghĩa cách các phần tử con (item-a, item-b, item-c, item-d, item-e) được sắp xếp trên grid bằng cách sử dụng các ký tự thay vì tọa độ hàng và cột. Ký tự "a" tương ứng với item-a, "b" tương ứng với item-b, và tương tự.
+// Các lớp .item sử dụng grid-area để xác định ký tự tương ứng trong grid-template-areas.
+// Kết quả là, các phần tử sẽ được đặt vào grid theo đúng hình ảnh mà bạn đã cung cấp. Điều này tạo ra một bố cục grid linh hoạt dựa trên grid-template-areas.
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-template-areas:
+        "a b b c"
+        "a d e c"
+        "a d e c";
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.item-a {
+    grid-area: a;
+}
+
+.item-b {
+    grid-area: b;
+}
+
+.item-c {
+    grid-area: c;
+}
+
+.item-d {
+    grid-area: d;
+}
+
+.item-e {
+    grid-area: e;
+}
+
+.grid-wrap {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.section-gallery {
+    display: grid;
+    grid-gap: 15px; // Đây là khoảng cách giữa các phần tử con trong grid.
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); 
+    // Đây là cách bạn định nghĩa số cột trong grid. Điều này sử dụng hàm repeat() để tạo số cột tự động dựa trên kích thước của các phần tử con. auto-fit cho phép cột tự động thêm hoặc bớt để điều chỉnh kích thước trang web. minmax(230px, 1fr) định nghĩa rằng mỗi cột có kích thước tối thiểu là 230px và tối đa là 1fr (tự động điều chỉnh để lấp đầy không gian).
+    grid-auto-rows: 200px; //Đây là chiều cao tự động của các hàng trong grid.
+    grid-auto-flow: dense; 
+    // Thuộc tính này xác định cách các phần tử con được đặt trong grid. "Dense" đồng nghĩa với việc grid sẽ cố gắng điền vào bất kỳ khoảng trống nào trong khi vẫn duy trì thứ tự ban đầu của các phần tử.
+    padding: 30px 0px;
+
+    & > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    }
+
+    .wide {
+        grid-column: span 2; // để làm cho phần tử con này chiếm 2 cột trong grid
+    }
+
+    .tall {
+        grid-row: span 2; // để làm cho phần tử con này chiếm 2 hàng trong grid
+    }
+
+    .big {
+        //  kết hợp cả hai thuộc tính để làm cho phần tử con này chiếm 2 cột và 2 hàng trong grid.
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+
+}
