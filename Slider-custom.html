@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        #slider-container {
+            width: 60%;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-item {
+            width: 33.33%;
+            flex: 0 0 auto;
+            opacity: 0.5;
+            transition: opacity 0.5s;
+        }
+
+        .slider-item.active {
+            opacity: 1;
+        }
+
+        #prev, #next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        #prev {
+            left: 10px;
+        }
+
+        #next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="slider-container">
+    <div id="slider-wrapper">
+        <div class="slider-item active"><img src="image1.jpg" alt="Image 1"></div>
+        <div class="slider-item"><img src="image2.jpg" alt="Image 2"></div>
+        <div class="slider-item"><img src="image3.jpg" alt="Image 3"></div>
+        <div class="slider-item"><img src="image4.jpg" alt="Image 4"></div>
+        <div class="slider-item"><img src="image5.jpg" alt="Image 5"></div>
+        <div class="slider-item"><img src="image6.jpg" alt="Image 6"></div>
+        <div class="slider-item"><img src="image7.jpg" alt="Image 7"></div>
+        <div class="slider-item"><img src="image8.jpg" alt="Image 8"></div>
+    </div>
+    <div id="prev">&lt;</div>
+    <div id="next">&gt;</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var currentIndex = 0;
+        var totalItems = $('.slider-item').length;
+        var itemsPerPage = 3;
+
+        console.log(totalItems);
+
+        $('#prev').click(function () {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
+        });
+
+        $('#next').click(function () {
+            if (currentIndex < totalItems - 1) {
+                currentIndex++;
+                updateSlider();
+            }
+        });
+
+        function updateSlider() {
+            // Remove active class from all items
+            $('.slider-item').removeClass('active');
+            console.log(currentIndex);
+            
+            // Add active class to the current item
+            $('.slider-item').eq(currentIndex).addClass('active');
+
+            var translateXValue = -currentIndex * (100 / (itemsPerPage));
+            $('#slider-wrapper').css('transform', 'translateX(' + translateXValue + '%)');
+        }
+        
+        // Initial update
+        updateSlider();
+    });
+</script>
+
+</body>
+</html>
