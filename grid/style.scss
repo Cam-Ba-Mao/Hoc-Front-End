@@ -1,17 +1,17 @@
 $blue-color: #48aafd;
 $green-color: #00c899;
-$primary: #FC556F;
-$secondary: #FD9C84;
+$primary: #fc556f;
+$secondary: #fd9c84;
 $gradient: linear-gradient(to right, $primary, $secondary);
 html {
-    font-size: 62.5% ;
+    font-size: 62.5%;
 }
 * {
     box-sizing: border-box;
 }
 body {
     font-size: 1.6rem;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: normal;
     background-color: #f3f3f3;
     padding: 2rem;
@@ -40,16 +40,16 @@ img {
         "a d e c";
     max-width: 800px;
     margin: 0 auto;
-}
 
-.item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    .item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+    }
 }
 
 .item-a {
@@ -73,19 +73,23 @@ img {
 }
 
 .grid-wrap {
-    width: 800px;
+    max-width: 800px;
     margin: 0 auto;
 }
-
+// Demo về auto-fit và auto-fill https://codepen.io/SaraSoueidan/pen/JrLdBQ
 .section-gallery {
     display: grid;
     grid-gap: 15px; // Đây là khoảng cách giữa các phần tử con trong grid.
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     // Đây là cách bạn định nghĩa số cột trong grid. Điều này sử dụng hàm repeat() để tạo số cột tự động dựa trên kích thước của các phần tử con. auto-fit cho phép cột tự động thêm hoặc bớt để điều chỉnh kích thước trang web. minmax(230px, 1fr) định nghĩa rằng mỗi cột có kích thước tối thiểu là 230px và tối đa là 1fr (tự động điều chỉnh để lấp đầy không gian).
     grid-auto-rows: 200px; //Đây là chiều cao tự động của các hàng trong grid.
-    grid-auto-flow: dense; 
+    grid-auto-flow: dense;
     // Thuộc tính này xác định cách các phần tử con được đặt trong grid. "Dense" đồng nghĩa với việc grid sẽ cố gắng điền vào bất kỳ khoảng trống nào trong khi vẫn duy trì thứ tự ban đầu của các phần tử.
     padding: 30px 0px;
+
+    @media screen and (max-width: 767.98px) {
+        grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+    }
 
     & > div {
         display: flex;
@@ -113,5 +117,163 @@ img {
         grid-column: span 2;
         grid-row: span 2;
     }
-
 }
+
+#grid {
+    display: grid;
+    height: 200px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 200px;
+    margin-bottom: 100px;
+}
+#item1 {
+    background-color: #07a787;
+}
+#item2 {
+    background-color: #ffa400;
+    grid-column: 2 / 4; // bắt đầu ở vị trí số 2 và kết thúc ở vị trí số 4
+}
+#item3 {
+    background-color: #00aefd;
+    grid-column: span 2 / 7; // chiếm 2 cột và bắt đầu từ vị trí số 7 tính từ bên phải qua
+    // grid-column: 4 / span 2; // chiếm 2 cột và bắt đầu từ vị trí số 4 tính từ bên trái qua
+}
+
+#container {
+    display: grid;
+    grid-template-columns: minmax(min-content, 300px) minmax(200px, 1fr) 150px;
+    grid-gap: 5px;
+    box-sizing: border-box;
+    height: 200px;
+    width: 100%;
+    background-color: #07a787;
+    padding: 10px;
+}
+
+#container > div {
+    background-color: #ffa400;
+    padding: 5px;
+}
+
+#page {
+    margin-top: 100px;
+    display: grid;
+    width: 100%;
+    height: 250px;
+    grid-template-areas:
+        "head head"
+        "nav  main"
+        "nav  foot";
+    grid-template-rows: 50px 1fr 30px;
+    grid-template-columns: 150px 1fr;
+}
+#page > header {
+    grid-area: head;
+    background-color: #07a787;
+}
+#page > nav {
+    grid-area: nav;
+    background-color: #ffa400;
+}
+#page > main {
+    grid-area: main;
+    background-color: #00aefd;
+}
+#page > footer {
+    grid-area: foot;
+    background-color: #e74c3c;
+}
+
+.gallery {
+    margin-top: 100px;
+    background-color: #f9f7f6;
+    grid-gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(7, 7rem);
+    grid-auto-flow: dense;    
+}
+
+.gallery__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery__item--1 {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+}
+.gallery__item--2 {
+    grid-column: 3 / 6;
+    grid-row: 1 / 4;
+}
+.gallery__item--3 {
+    grid-column: 6 / 7;
+    grid-row: 1 / 3;
+}
+.gallery__item--4 {
+    grid-column: 7 / 9;
+    grid-row: 1 / 3;
+}
+.gallery__item--5 {
+    grid-column: 1 / 3;
+    grid-row: 3 / 6;
+}
+.gallery__item--6 {
+    grid-column: 3 / 5;
+    grid-row: 4 / 6;
+}
+.gallery__item--7 {
+    grid-column: 5 / 6;
+    grid-row: 4 / 5;
+}
+.gallery__item--8 {
+    grid-column: 6 / 8;
+    grid-row: 3 / 5;
+}
+.gallery__item--9 {
+    grid-column: 8 / 9;
+    grid-row: 3 / 6;
+}
+.gallery__item--10 {
+    grid-column: 1 / 2;
+    grid-row: 6 / 8;
+}
+.gallery__item--11 {
+    grid-column: 2 / 4;
+    grid-row: 6 / 8;
+}
+.gallery__item--12 {
+    grid-column: 4 / 5;
+    grid-row: 6 / 8;
+}
+.gallery__item--13 {
+    grid-column: 5 / 8;
+    grid-row: 5 / 8;
+}
+.gallery__item--14 {
+    grid-column: 8 / 9;
+    grid-row: 6 / 8;
+}
+
+@media screen and (max-width: 1023.98px) {
+    .gallery {
+        grid-template-columns: repeat(4, 1fr); 
+        grid-template-rows: repeat(14, 7rem); 
+        grid-gap: 1rem; 
+    }
+
+    .gallery__item {
+        grid-column: auto;
+        grid-row: auto; 
+    }
+
+    .gallery__item--1 {
+        grid-column: span 4; 
+        grid-row: span 3; 
+    }
+}
+// Một số ví dụ về Gallery
+// Responsive CSS Grid Masonry Gallery https://codepen.io/vhanla/pen/PxjZvj
